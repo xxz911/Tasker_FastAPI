@@ -1,0 +1,49 @@
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+
+<div style="margin-top: 50px;" class="ui container">
+
+    <h1 class="ui center aligned header green">{{ app_name }}</h1>
+
+    <div class="ui segment" style="background-color: rgba(0, 255, 51, 0.900);">
+        <form class="ui form " action="{{ url_for('add') }}" method="post">
+            <h3 class="test_css">Tasker поможет отслеживать Ваши дела</h3>
+            <div class="field">
+                <label>Новая задача</label>
+                <p style="color:red">{{er}}</p>
+                <input type="text" name="title" required placeholder="Введите название задачи">
+            </div>
+            <div class="field">
+                <label for="primary">
+                    <input type="checkbox" id="primary" name="primary" value="True" style="margin-top:0.29em; margin-right: 0.4em;">
+                Важная задача</label>
+            </div>
+
+            <button class="ui teal green button" type="submit">Добавить</button>
+        </form>
+    </div>
+
+    {% for task in tasks %}
+        {% if task.primary %}
+    <div class="ui segment primary_seg">
+        <p class="ui big header" style="color: black;">{{ task.title }}</p>
+        {% else %}
+    <div class="ui segment segment">
+        <p class="ui big header">{{ task.title }}</p>
+        {% endif %}
+
+        {% if task.is_complete == False %}
+        <span class="ui gray label">Не завершено</span>
+        <a class="ui primary basic button" href="{{ url_for('update', id=task.id) }}">Закрыть</a>
+        {% else %}
+        <span class="ui green label">Завершено</span>
+        <a class="ui yellow button" href="{{ url_for('update', id=task.id) }}">Открыть</a>
+        <a class="ui negative basic button" href="{{ url_for('delete', id=task.id) }}">Удалить</a>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+
+</div>
+{% endblock content %}
