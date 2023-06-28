@@ -2,7 +2,7 @@
 # Tasker
 
 ![version](https://img.shields.io/badge/Version-v.1.0(Latest)-blue)
-![Fastapi](https://img.shields.io/badge/Fastapi-v.0.97.0-info)
+![FastAPI](https://img.shields.io/badge/Fastapi-v.0.97.0-info)
 
 
 ## О проекте
